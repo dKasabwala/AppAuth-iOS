@@ -45,6 +45,7 @@ extern NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256;
   NSString *_clientSecret;
   NSString *_scope;
   NSURL *_redirectURL;
+  NSString *_redirectSchema;
   NSString *_state;
   NSString *_codeVerifier;
   NSString *_codeChallenge;
@@ -105,6 +106,8 @@ extern NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256;
     @see https://tools.ietf.org/html/rfc6749#section-4.1.1
     @see https://tools.ietf.org/html/rfc6819#section-5.3.5
  */
+
+@property (nonatomic, readonly , nullable) NSString *redirectSchema;
 @property(nonatomic, readonly, nullable) NSString *state;
 
 /*! @brief The PKCE code verifier.
@@ -156,6 +159,7 @@ extern NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256;
                  clientId:(NSString *)clientID
                    scopes:(nullable NSArray<NSString *> *)scopes
               redirectURL:(NSURL *)redirectURL
+           redirectSchema: redirectSchema
              responseType:(NSString *)responseType
      additionalParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters;
 
@@ -177,6 +181,7 @@ extern NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256;
              clientSecret:(nullable NSString *)clientSecret
                    scopes:(nullable NSArray<NSString *> *)scopes
               redirectURL:(NSURL *)redirectURL
+            redirectSchema: redirectSchema
              responseType:(NSString *)responseType
      additionalParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters;
 
@@ -197,19 +202,18 @@ extern NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256;
         challenge.
     @param additionalParameters The client's additional authorization parameters.
  */
-- (instancetype)
-    initWithConfiguration:(OIDServiceConfiguration *)configuration
-                 clientId:(NSString *)clientID
-             clientSecret:(nullable NSString *)clientSecret
-                    scope:(nullable NSString *)scope
-              redirectURL:(nullable NSURL *)redirectURL
-             responseType:(NSString *)responseType
-                    state:(nullable NSString *)state
-             codeVerifier:(nullable NSString *)codeVerifier
-            codeChallenge:(nullable NSString *)codeChallenge
-      codeChallengeMethod:(nullable NSString *)codeChallengeMethod
-     additionalParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters
-    NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithConfiguration:(OIDServiceConfiguration *)configuration
+                             clientId:(NSString *)clientID
+                         clientSecret:(nullable NSString *)clientSecret
+                                scope:(nullable NSString *)scope
+                          redirectURL:(NSURL *)redirectURL
+                       redirectSchema: (NSString *)redirectSchema
+                         responseType:(NSString *)responseType
+                                state:(nullable NSString *)state
+                         codeVerifier:(nullable NSString *)codeVerifier
+                        codeChallenge:(nullable NSString *)codeChallenge
+                  codeChallengeMethod:(nullable NSString *)codeChallengeMethod
+                 additionalParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters;    NS_DESIGNATED_INITIALIZER;
 
 /*! @brief Constructs the request URI by adding the request parameters to the query component of the
         authorization endpoint URI using the "application/x-www-form-urlencoded" format.

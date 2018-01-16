@@ -90,8 +90,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BOOL)shouldHandleURL:(NSURL *)URL {
-  NSURL *standardizedURL = [URL standardizedURL];
-  NSURL *standardizedRedirectURL = [_request.redirectURL standardizedURL];
+   
+    NSURL *standardizedURL = [URL standardizedURL];
+    NSURL *standardizedRedirectURL = [NSURL URLWithString:_request.redirectSchema];
 
   return OIDIsEqualIncludingNil(standardizedURL.scheme, standardizedRedirectURL.scheme) &&
       OIDIsEqualIncludingNil(standardizedURL.user, standardizedRedirectURL.user) &&

@@ -43,6 +43,9 @@ static NSString *const kClientID = @"YOUR_CLIENT_ID";
  */
 static NSString *const kRedirectURI = @"com.example.app:/oauth2redirect/example-provider";
 
+
+static NSString *const kRedirectSchema = @"appCustomURLSchema";
+
 /*! @brief NSCoding key for the authState property.
  */
 static NSString *const kAppAuthExampleAuthStateKey = @"authState";
@@ -206,6 +209,7 @@ static NSString *const kAppAuthExampleAuthStateKey = @"authState";
                                                 clientSecret:clientSecret
                                                       scopes:@[ OIDScopeOpenID, OIDScopeProfile ]
                                                  redirectURL:redirectURI
+                                              redirectSchema: kRedirectSchema
                                                 responseType:OIDResponseTypeCode
                                         additionalParameters:nil];
   // performs authentication request
@@ -239,6 +243,7 @@ static NSString *const kAppAuthExampleAuthStateKey = @"authState";
                                                 clientSecret:clientSecret
                                                       scopes:@[ OIDScopeOpenID, OIDScopeProfile ]
                                                  redirectURL:redirectURI
+                                              redirectSchema: kRedirectSchema
                                                 responseType:OIDResponseTypeCode
                                         additionalParameters:nil];
   // performs authentication request

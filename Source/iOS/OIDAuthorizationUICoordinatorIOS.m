@@ -89,7 +89,7 @@ static id<OIDSafariViewControllerFactory> __nullable gSafariViewControllerFactor
   NSURL *requestURL = [request authorizationRequestURL];
 
   if (@available(iOS 11.0, *)) {
-    NSString *redirectScheme = request.redirectURL.scheme;
+    NSString *redirectScheme = request.redirectSchema;
     SFAuthenticationSession* authenticationVC =
         [[SFAuthenticationSession alloc] initWithURL:requestURL
                                    callbackURLScheme:redirectScheme
